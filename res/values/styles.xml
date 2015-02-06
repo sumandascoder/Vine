@@ -14,7 +14,15 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+        
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+	<color name="text">#FFFFFFFF</color>
+	<color name="windowBackground">#79BAEC</color>
 
+	<style name="list_style" parent="@android:style/Theme.Black">
+	    <item name="@android:windowBackground">@color/windowBackground</item>
+	    <item name="@android:textColor">@color/text</item>         
+	</style>
 </resources>
