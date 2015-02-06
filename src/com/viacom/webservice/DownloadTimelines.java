@@ -10,6 +10,7 @@ import java.net.URL;
 import org.json.JSONObject;
 
 import com.example.myvine.R;
+import com.viacom.datahandler.ProcessedVineDataValues;
 import com.viacom.ui.ListViewerActivity;
 import com.viacom.ui.VineActivity;
 
@@ -21,12 +22,20 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.Settings;
 import android.view.ContextThemeWrapper;
+import android.widget.Toast;
 
+/**
+ * The DownloadTimelines class that connects to the API pointed, fetches the data to be displayed
+ * @author sumansucharitdas
+ *
+ */
 public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVineDataValues>{
 	private Context mainAppContext;
 	private int responseCode;
 	private AlertDialog.Builder alertServerResponse;
 	private String userURL = null;
+	private static VineMyJSONFormatter vine ;
+	private static ProcessedVineDataValues processedVineDataValues;
 	
 	public DownloadTimelines(Context ctx, String url) {
 		mainAppContext = ctx;
@@ -36,6 +45,7 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 	@Override
 	protected void onPreExecute() {
 	    super.onPreExecute();
+	    // The alert dialog for no Internet and wrong api calls
 	    alertServerResponse = new AlertDialog.Builder(new ContextThemeWrapper(mainAppContext,
 				R.style.theme_dialog));
 	}
@@ -46,16 +56,17 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 		HttpURLConnection connection = null;
 		try {
 			if(userURL!=null){
+				// Using GET method to fetch the info from the URL
 				url = new URL(userURL);
 				connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("GET");
 				responseCode = connection.getResponseCode();
-				if(responseCode == 200){
+				// If the query is successful
+				if(responseCode == 200 ){
 					System.out.println("\nSending 'POST' request to URL : " + url);
 					System.out.println("Response Code : " + responseCode);
 			 
-					BufferedReader in = new BufferedReader(
-					        new InputStreamReader(connection.getInputStream()));
+					BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
 					StringBuffer response = new StringBuffer();
 			 
@@ -64,21 +75,26 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 					}
 					in.close();
 			 
-					//print result
+					//Print the API response result
 					System.out.println(response.toString());
 					
-					//ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
-					//ProcessedVineData vineData = gson.fromJson(x, ProcessedVineData.class);
-							// mapper.readValue(response.toString(), ProcessedVineData.class);
-					//System.out.println(gson.toString());
+					// Mappers and GSON can be used if all went fine with parsing.
+					// ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+					// ProcessedVineData vineData = gson.fromJson(x, ProcessedVineData.class);
+					// mapper.readValue(response.toString(), ProcessedVineData.class);
+					// System.out.println(gson.toString());
 					
-					VineMyJSONFormatter vine =  new VineMyJSONFormatter(response.toString());
-					ProcessedVineDataValues processedVineDataValues = new ProcessedVineDataValues();
+					vine =  new VineMyJSONFormatter(response.toString(), mainAppContext);
+					// All the data that we require to be displayed to our screen
+					processedVineDataValues = new ProcessedVineDataValues();
 					processedVineDataValues.thumbnailURLs = vine.thumbnailURLs;
 					processedVineDataValues.videoURLs =  vine.videoURLs;
 					processedVineDataValues.descriptions = vine.descriptions;
 					processedVineDataValues.usernames = vine.usernames;
 					return processedVineDataValues;
+				}
+				else if(responseCode == 404){
+					Toast.makeText(mainAppContext, "Error Code : Page Not Available", Toast.LENGTH_LONG).show();;
 				}
 			}
 			else{
@@ -102,14 +118,32 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 	
 	@Override
 	protected void onPostExecute(ProcessedVineDataValues result) {
+		// Closing the Progree Dialog
 		if(VineActivity.progressDialog.isShowing()){
 			VineActivity.progressDialog.dismiss();
 		}
-		if(responseCode == 200){
+		// If response is accurate and no errors in the json
+		if(responseCode == 200 && "".equals(vine.getError())){
 			Intent myIntent = new Intent(mainAppContext, ListViewerActivity.class);
 			myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			mainAppContext.startActivity(myIntent);
 		}
+		// Page not found issue
+		else if(responseCode == 404){
+			alertServerResponse.setTitle("API Results")
+			.setMessage("Error Code : Page Not Available")
+			.setIcon(R.drawable.ic_launcher)
+			.setCancelable(true)
+			.setPositiveButton("OK", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel(); 
+				}
+			});
+			alertServerResponse.create().show();
+		}
+		// Rest of the cases like Internet not available, etc.
 		else{
 			alertServerResponse.setTitle("Internet Connection")
 			.setMessage("Check Internet Connection")

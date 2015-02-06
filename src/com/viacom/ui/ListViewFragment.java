@@ -2,7 +2,7 @@ package com.viacom.ui;
 
 import com.example.myvine.R;
 import com.viacom.datahandler.CustomListViewAdapter;
-import com.viacom.webservice.ProcessedVineDataValues;
+import com.viacom.datahandler.ProcessedVineDataValues;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,12 +12,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 
+/**
+ * ListView holding the thumbnails and Video details like, username and Uploaded dates
+ * @author sumansucharitdas
+ *
+ */
 public class ListViewFragment extends Fragment{
 
 	private ListView thumbnailList;
@@ -28,13 +31,15 @@ public class ListViewFragment extends Fragment{
 	 public void onActivityCreated(Bundle savedInstanceState){
 		 super.onActivityCreated(savedInstanceState);
 		 setHasOptionsMenu(true);
-		 //thumbnailList = (ListView)view.findViewById(R.id.list);
+		 // Add the CustomAdapter for the ListView
 		 thumbnailList.setAdapter(new CustomListViewAdapter(thumbnailList.getContext(),ProcessedVineDataValues.thumbnailURLs));
 		 thumbnailList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				pos = position;
+				// Upload the Video that user has clicked from the thumbnails
+				// First video is played as indexed 0.
 				updateVideo();
 			}
 		});
@@ -58,17 +63,18 @@ public class ListViewFragment extends Fragment{
 	 public void onAttach(Activity activity) {
 	  super.onAttach(activity);
 	  try{
-			 if (getActivity() instanceof FragmentCommunicator) {
-				  communicator = (FragmentCommunicator) getActivity();
-			  } 
-		 }
-		 catch (Exception e){
-			 e.printStackTrace();
-		 }
-		 
+		  // The Communication Parameter to verify the click
+		  if (getActivity() instanceof FragmentCommunicator) {
+			  communicator = (FragmentCommunicator) getActivity();
+		  } 
+	  }
+	  catch (Exception e){
+		e.printStackTrace();
+	  } 
 	}
-	
-	
+	/**
+	 * Send the Id of the Clicked location through the communicator to start the video
+	 */
 	private void updateVideo() {
 		communicator.sendId(pos);
 	}

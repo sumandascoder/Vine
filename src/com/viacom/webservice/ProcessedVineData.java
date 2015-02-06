@@ -2,6 +2,11 @@ package com.viacom.webservice;
 
 import java.util.List;
 
+/**
+ * 
+ * @author sumansucharitdas
+ *
+ */
 public class ProcessedVineData {
 
 	private String code;

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App Action bar based Strings -->
     <string name="app_name">Viacom</string>
     <string name="hello_viacom">Welcome to Viacom world!</string>
+    
+    <!-- Widgets based Strings -->
     <string name="hello_viacom_button">User Videos</string>
     <string name="user_profile">User Profile</string>
-    <string name="default_link">https://vine.co/api/timelines/users/suman</string>
-    <string name="action_settings">Settings</string>
-    <string name="listViewTitle">User Pics</string>
-	<string name="help">Help</string>
+    <string name="default_link">918753190470619136</string>
     <string name="uploadVideoDescription">Uploaded Video</string>
+	
+    <!-- View Based Strings -->
+    <string name="listViewTitle">User Pics</string>
+	
+	<!-- Menu Strings in the action bar --> 
+	<string name="action_settings">Settings</string>
+    <string name="help">Help</string>
+    
 </resources>

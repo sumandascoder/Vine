@@ -27,9 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcomeText"
         android:layout_toRightOf="@+id/userProfileText"
-        android:focusable="false"
         android:hint="@string/default_link"
         android:layout_margin="15dp"
+        android:inputType="text"
         android:lines="1" />
     <Button  
         android:id="@+id/ViacomResults"

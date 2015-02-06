@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.viacom.ui.ListViewerActivity"
-            android:theme="@style/list_style"/>
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
     </application>
 
 </manifest>

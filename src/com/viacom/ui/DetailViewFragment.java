@@ -1,7 +1,7 @@
 package com.viacom.ui;
 
 import com.example.myvine.R;
-import com.viacom.webservice.ProcessedVineDataValues;
+import com.viacom.datahandler.ProcessedVineDataValues;
 import com.viacom.webservice.VineMyJSONFormatter;
 
 import android.net.Uri;
@@ -14,18 +14,23 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+/**
+ * The Fragment that displays the Video, Video Player and Video Description
+ * @author sumansucharitdas
+ *
+ */
 public class DetailViewFragment extends Fragment {
 
-	private static int clicked;
 	private VideoView videoView;
 	private MediaController mc;
 	private TextView tv;
 	private Uri uri;
+	
 	@Override
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.detailview_fragment, container, false);
-		uri=Uri.parse(ProcessedVineDataValues.videoURLs.get(clicked));
+		uri=Uri.parse(ProcessedVineDataValues.videoURLs.get(0));
 
 	    videoView=(VideoView)view.findViewById(R.id.UploadVideo);
 	    videoView.setVideoURI(uri);
@@ -35,15 +40,17 @@ public class DetailViewFragment extends Fragment {
 	    videoView.setMediaController(mc);
 	    videoView.start();
 	    tv = (TextView) view.findViewById(R.id.emptyy);
+	    
+	    // Obtain the description, the default one that is first thumbnail
 	    tv.setText(VineMyJSONFormatter.descriptions.get(0));
-	  return view;
+	    return view;
 	 }
 	
 	public void receiveMsg ( int i )
     {
-       clicked = i;
-       uri=Uri.parse(ProcessedVineDataValues.videoURLs.get(clicked));
-
+		// Receive the Clicked Position through communicator
+       uri=Uri.parse(ProcessedVineDataValues.videoURLs.get(i));
+       // Set the Video to be played and the description
 	   videoView.setVideoURI(uri);
 	   mc = new MediaController(getActivity());
 	   mc.setAnchorView(videoView);
