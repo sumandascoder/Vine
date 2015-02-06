@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.viacom.datahandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,8 +6,7 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.example.myvine.R;
-import com.example.webservice.ProcessedVineDataValues;
-import com.example.webservice.VineMyJSONFormatter;
+import com.viacom.webservice.VineMyJSONFormatter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -20,10 +19,16 @@ import android.widget.ImageView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+/**
+ * The Adapter class to have images and text displayed in Viacom Format
+ * @author sumansucharitdas
+ *
+ */
 public class CustomListViewAdapter extends BaseAdapter {
 
 	private static LayoutInflater inflater=null;
 	private static Context mainContext;
+	
 	public CustomListViewAdapter(Context applicationContext, List<String> thumbnailURLs) {
 		mainContext = applicationContext;
 		inflater = ( LayoutInflater )mainContext.
@@ -64,6 +69,7 @@ public class CustomListViewAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
+		// Using View Holder Pattern to have the content loaded dynamically 
 		ViewHolder holder=new ViewHolder();
         if (convertView == null) {     
         	convertView = inflater.inflate(R.layout.row_item, null);
@@ -74,30 +80,20 @@ public class CustomListViewAdapter extends BaseAdapter {
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tv.setText("Test");
-        System.out.println("Position : " + position);
+        // Add the text to be diplayed along the Thumbnails
+        holder.tv.setText(ProcessedVineDataValues.usernames.get(position));
         holder.img.setImageBitmap(VineMyJSONFormatter.thumbnails.get(position)); 
-//        convertView.setOnClickListener(new OnClickListener() {            
-//            @Override
-//            public void onClick(View v) {
-//            	Uri uri = Uri.parse(ProcessedVineDataValues.videoURLs.get(position));
-//        		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        		intent.setDataAndType(uri, "video/mp4");
-//        		mainContext.startActivity(intent);
-//            }
-//        });   
+   
         return convertView;
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
 	public int getViewTypeCount() {
-		// TODO Auto-generated method stub
 		if(ProcessedVineDataValues.thumbnailURLs.size() != 0){
 			return ProcessedVineDataValues.thumbnailURLs.size();
 		}
@@ -108,19 +104,16 @@ public class CustomListViewAdapter extends BaseAdapter {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean areAllItemsEnabled() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isEnabled(int position) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
