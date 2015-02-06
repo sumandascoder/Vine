@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 /**
- * Container to hold the Fragments, ListView and Detail Views
+ * Container to hold the Fragments, ListView and DetailView
  * it adds the communicator that makes the fragment interactive
  * to each other
  * @author sumansucharitdas
