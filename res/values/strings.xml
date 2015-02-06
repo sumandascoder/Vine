@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ViacomAPICall</string>
-    <string name="hello_viacom">Hello Viacom world!</string>
+    <string name="app_name">Viacom</string>
+    <string name="hello_viacom">Welcome to Viacom world!</string>
     <string name="hello_viacom_button">Thumbnails</string>
     <string name="action_settings">Settings</string>
     <string name="listViewTitle">User Pics</string>
