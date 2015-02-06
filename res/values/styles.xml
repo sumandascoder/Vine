@@ -18,11 +18,18 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
+    <!-- Theme for list view -->
 	<color name="text">#FFFFFFFF</color>
 	<color name="windowBackground">#79BAEC</color>
 
 	<style name="list_style" parent="@android:style/Theme.Black">
 	    <item name="@android:windowBackground">@color/windowBackground</item>
 	    <item name="@android:textColor">@color/text</item>         
+	</style>
+	
+	<!-- Dialog boxes in the application -->
+	<color name="dialogText">#CD5C5C</color>
+	<style name="theme_dialog" parent="@android:style/Theme.Dialog">
+	    <item name="@android:textColor">@color/dialogText</item>         
 	</style>
 </resources>

@@ -7,6 +7,7 @@ import com.viacom.webservice.DownloadTimelines;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class VineActivity extends Activity {
 		setTitle(R.string.app_name);
 		final DownloadTimelines dt = null;
 		progressDialog = new ProgressDialog(this);
+		final Context ctx =  this;
         
 		Button viacomResults = (Button) findViewById(R.id.ViacomResults);
 		viacomResults.setOnClickListener(new OnClickListener() {
@@ -37,7 +39,7 @@ public class VineActivity extends Activity {
 		        progressDialog.setCancelable(false);
 		        progressDialog.setCanceledOnTouchOutside(false);
 		        progressDialog.show();
-				new DownloadTimelines(getApplicationContext()).execute(new JSONObject());
+				new DownloadTimelines(ctx).execute(new JSONObject());
 			}
 		});
 		
