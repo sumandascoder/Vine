@@ -1,4 +1,4 @@
-package com.example.webservice;
+package com.viacom.webservice;
 
 import java.util.List;
 

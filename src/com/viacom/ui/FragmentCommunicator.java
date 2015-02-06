@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.viacom.ui;
 
 public interface FragmentCommunicator
 {

@@ -1,7 +1,8 @@
-package com.example.ui;
+package com.viacom.ui;
 
 import com.example.myvine.R;
-import com.example.webservice.ProcessedVineDataValues;
+import com.viacom.datahandler.CustomListViewAdapter;
+import com.viacom.webservice.ProcessedVineDataValues;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.viacom.datahandler;
 
 import android.widget.ImageView;
 import android.widget.TextView;

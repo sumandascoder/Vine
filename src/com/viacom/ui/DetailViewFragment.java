@@ -1,7 +1,7 @@
-package com.example.ui;
+package com.viacom.ui;
 
 import com.example.myvine.R;
-import com.example.webservice.ProcessedVineDataValues;
+import com.viacom.webservice.ProcessedVineDataValues;
 
 import android.net.Uri;
 import android.os.Bundle;

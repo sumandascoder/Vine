@@ -1,4 +1,4 @@
-package com.example.webservice;
+package com.viacom.webservice;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import com.example.myvine.VineActivity;
-import com.example.ui.ListViewerActivity;
+import com.viacom.ui.ListViewerActivity;
+import com.viacom.ui.VineActivity;
 
 import android.content.Context;
 import android.content.Intent;

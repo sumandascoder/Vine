@@ -1,8 +1,9 @@
-package com.example.myvine;
+package com.viacom.ui;
 
 import org.json.JSONObject;
 
-import com.example.webservice.DownloadTimelines;
+import com.example.myvine.R;
+import com.viacom.webservice.DownloadTimelines;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

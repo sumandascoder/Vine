@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.viacom.datahandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,8 +6,8 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.example.myvine.R;
-import com.example.webservice.ProcessedVineDataValues;
-import com.example.webservice.VineMyJSONFormatter;
+import com.viacom.webservice.ProcessedVineDataValues;
+import com.viacom.webservice.VineMyJSONFormatter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
