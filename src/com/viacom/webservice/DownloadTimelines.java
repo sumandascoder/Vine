@@ -20,6 +20,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.view.ContextThemeWrapper;
 
 public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVineDataValues>{
@@ -108,7 +109,14 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 			.setMessage("Check Internet Connection")
 			.setIcon(R.drawable.ic_none)
 			.setCancelable(true)
-			.setPositiveButton("OK", new OnClickListener() {
+			.setPositiveButton("Go to Settings", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					mainAppContext.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+				}
+			})
+			.setNegativeButton("Cancel", new OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
