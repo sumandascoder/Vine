@@ -3,7 +3,9 @@
 
     <string name="app_name">Viacom</string>
     <string name="hello_viacom">Welcome to Viacom world!</string>
-    <string name="hello_viacom_button">Thumbnails</string>
+    <string name="hello_viacom_button">User Videos</string>
+    <string name="user_profile">User Profile</string>
+    <string name="default_link">https://vine.co/api/timelines/users/suman</string>
     <string name="action_settings">Settings</string>
     <string name="listViewTitle">User Pics</string>
 	<string name="help">Help</string>

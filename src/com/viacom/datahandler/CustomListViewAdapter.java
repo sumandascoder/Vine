@@ -74,18 +74,10 @@ public class CustomListViewAdapter extends BaseAdapter {
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tv.setText("Test");
+        holder.tv.setText(ProcessedVineDataValues.usernames.get(position));
         System.out.println("Position : " + position);
         holder.img.setImageBitmap(VineMyJSONFormatter.thumbnails.get(position)); 
-//        convertView.setOnClickListener(new OnClickListener() {            
-//            @Override
-//            public void onClick(View v) {
-//            	Uri uri = Uri.parse(ProcessedVineDataValues.videoURLs.get(position));
-//        		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        		intent.setDataAndType(uri, "video/mp4");
-//        		mainContext.startActivity(intent);
-//            }
-//        });   
+   
         return convertView;
 	}
 

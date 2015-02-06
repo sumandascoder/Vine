@@ -13,21 +13,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class VineActivity extends Activity {
 
 	public static ProgressDialog progressDialog;
-	
-	
+	private String urlString = "https://vine.co/api/timelines/users/918753190470619136";
+	private ImageView viacomImage;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_vine_activity);
 		setTitle(R.string.app_name);
-		final DownloadTimelines dt = null;
 		progressDialog = new ProgressDialog(this);
-		final Context ctx =  this;
+		final Context vineContext =  this;
         
 		Button viacomResults = (Button) findViewById(R.id.ViacomResults);
 		viacomResults.setOnClickListener(new OnClickListener() {
@@ -39,10 +43,32 @@ public class VineActivity extends Activity {
 		        progressDialog.setCancelable(false);
 		        progressDialog.setCanceledOnTouchOutside(false);
 		        progressDialog.show();
-				new DownloadTimelines(ctx).execute(new JSONObject());
+				new DownloadTimelines(vineContext, urlString).execute(new JSONObject());
 			}
 		});
 		
+		viacomImage = (ImageView) findViewById(R.id.ViacomImage);
+		viacomImage.setImageResource(R.drawable.ic_flintstone); 
+		TranslateAnimation animation = new TranslateAnimation(0.0f, 400.0f,
+		    0.0f, 0.0f);
+		  animation.setDuration(5000);
+		  animation.setRepeatCount(Animation.INFINITE);
+		  animation.setRepeatMode(2);
+		  animation.setFillAfter(true);
+		  viacomImage.startAnimation(animation);
+
+		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+	    final ImageView mtvLogo = (ImageView)findViewById(R.id.ViacomImageMtv);
+	    mtvLogo.setImageResource(R.drawable.ic_mtv);
+	    mtvLogo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mtvLogo.startAnimation(shake);
+			}
+		});
+	    
+
 	}
 
 	@Override

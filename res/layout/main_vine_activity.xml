@@ -1,19 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:padding="5dp"
+    android:layout_gravity="center" >
 
     <TextView
         android:id = "@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="5dp"
+        android:textStyle="bold|italic"
         android:text="@string/hello_viacom" />
+    <TextView
+        android:id = "@+id/userProfileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/welcomeText"
+        android:text="@string/user_profile" />
+    <EditText
+        android:id = "@+id/userProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeText"
+        android:layout_toRightOf="@+id/userProfileText"
+        android:focusable="false"
+        android:hint="@string/default_link"
+        android:layout_margin="15dp"
+        android:lines="1" />
     <Button  
         android:id="@+id/ViacomResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/welcomeText"
+        android:layout_below="@+id/userProfile"
+        android:layout_margin="15dp"
         android:text="@string/hello_viacom_button"/>
-
-</LinearLayout>
+     <ImageView  
+        android:id="@+id/ViacomImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ViacomResults"/>
+     <ImageView  
+        android:id="@+id/ViacomImageMtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/ViacomImage"/>
+     
+</RelativeLayout>

@@ -23,10 +23,15 @@ public class VineMyJSONFormatter {
 	private final String TAG_RECORDS = "records";
 	private final String TAG_VIDEO = "videoUrl";
 	private final String TAG_THUMBNAIL = "thumbnailUrl";
+	private final String TAG_DESCRIPTION = "description";
+	private final String TAG_USERNAME = "username";
+	private final String TAG_CREATED = "created";
 	
 	public static List<String> videoURLs = new ArrayList<String>();
 	public static List<String> thumbnailURLs= new ArrayList<String>();
 	public static List<Bitmap> thumbnails = new ArrayList<Bitmap>();
+	public static List<String> descriptions = new ArrayList<String>();
+	public static List<String> usernames = new ArrayList<String>();
 	
 	public VineMyJSONFormatter(String string) {
 		try {
@@ -53,6 +58,9 @@ public class VineMyJSONFormatter {
 				JSONObject record = records.getJSONObject(i);
 				videoURLs.add(record.getString(TAG_VIDEO));
 				thumbnailURLs.add(record.getString(TAG_THUMBNAIL));
+				descriptions.add(record.getString(TAG_DESCRIPTION));
+				usernames.add(record.getString(TAG_USERNAME) + "\n" + "Created on : " 
+						+ record.getString(TAG_CREATED).replace("T", " "));
 				thumbnails.add(getBitmapFromURL(record.getString(TAG_THUMBNAIL)));
 			}
 			

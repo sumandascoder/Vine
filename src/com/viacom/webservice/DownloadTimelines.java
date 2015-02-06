@@ -14,7 +14,6 @@ import com.viacom.ui.ListViewerActivity;
 import com.viacom.ui.VineActivity;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -27,10 +26,11 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 	private Context mainAppContext;
 	private int responseCode;
 	private AlertDialog.Builder alertServerResponse;
+	private String userURL = null;
 	
-	public DownloadTimelines(Context ctx) {
+	public DownloadTimelines(Context ctx, String url) {
 		mainAppContext = ctx;
-		
+		userURL =  url;
 	}
 	
 	@Override
@@ -45,39 +45,45 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 		URL url;
 		HttpURLConnection connection = null;
 		try {
-			url = new URL("https://vine.co/api/timelines/users/918753190470619136");
-			connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("GET");
-			responseCode = connection.getResponseCode();
-			if(responseCode == 200){
-				System.out.println("\nSending 'POST' request to URL : " + url);
-				System.out.println("Response Code : " + responseCode);
-		 
-				BufferedReader in = new BufferedReader(
-				        new InputStreamReader(connection.getInputStream()));
-				String inputLine;
-				StringBuffer response = new StringBuffer();
-		 
-				while ((inputLine = in.readLine()) != null) {
-					response.append(inputLine);
+			if(userURL!=null){
+				url = new URL(userURL);
+				connection = (HttpURLConnection) url.openConnection();
+				connection.setRequestMethod("GET");
+				responseCode = connection.getResponseCode();
+				if(responseCode == 200){
+					System.out.println("\nSending 'POST' request to URL : " + url);
+					System.out.println("Response Code : " + responseCode);
+			 
+					BufferedReader in = new BufferedReader(
+					        new InputStreamReader(connection.getInputStream()));
+					String inputLine;
+					StringBuffer response = new StringBuffer();
+			 
+					while ((inputLine = in.readLine()) != null) {
+						response.append(inputLine);
+					}
+					in.close();
+			 
+					//print result
+					System.out.println(response.toString());
+					
+					//ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+					//ProcessedVineData vineData = gson.fromJson(x, ProcessedVineData.class);
+							// mapper.readValue(response.toString(), ProcessedVineData.class);
+					//System.out.println(gson.toString());
+					
+					VineMyJSONFormatter vine =  new VineMyJSONFormatter(response.toString());
+					ProcessedVineDataValues processedVineDataValues = new ProcessedVineDataValues();
+					processedVineDataValues.thumbnailURLs = vine.thumbnailURLs;
+					processedVineDataValues.videoURLs =  vine.videoURLs;
+					processedVineDataValues.descriptions = vine.descriptions;
+					processedVineDataValues.usernames = vine.usernames;
+					return processedVineDataValues;
 				}
-				in.close();
-		 
-				//print result
-				System.out.println(response.toString());
-				
-				//ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
-				//ProcessedVineData vineData = gson.fromJson(x, ProcessedVineData.class);
-						// mapper.readValue(response.toString(), ProcessedVineData.class);
-				//System.out.println(gson.toString());
-				
-				VineMyJSONFormatter vine =  new VineMyJSONFormatter(response.toString());
-				ProcessedVineDataValues processedVineDataValues = new ProcessedVineDataValues();
-				processedVineDataValues.thumbnailURLs = vine.thumbnailURLs;
-				processedVineDataValues.videoURLs =  vine.videoURLs;
-				return processedVineDataValues;
 			}
-			
+			else{
+				return null;
+			}
 		}
 		catch (MalformedURLException e) {
 			e.printStackTrace();

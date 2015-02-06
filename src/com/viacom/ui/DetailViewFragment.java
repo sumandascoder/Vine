@@ -2,6 +2,7 @@ package com.viacom.ui;
 
 import com.example.myvine.R;
 import com.viacom.webservice.ProcessedVineDataValues;
+import com.viacom.webservice.VineMyJSONFormatter;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class DetailViewFragment extends Fragment {
 	    videoView.setMediaController(mc);
 	    videoView.start();
 	    tv = (TextView) view.findViewById(R.id.emptyy);
-	    tv.setText("" + clicked);
+	    tv.setText(VineMyJSONFormatter.descriptions.get(0));
 	  return view;
 	 }
 	
@@ -49,6 +50,6 @@ public class DetailViewFragment extends Fragment {
 	   mc.setMediaPlayer(videoView);
 	   videoView.setMediaController(mc);
 	   videoView.start();
-	   tv.setText("" + clicked);
+	   tv.setText(VineMyJSONFormatter.descriptions.get(i));
     }
 }
