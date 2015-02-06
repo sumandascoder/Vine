@@ -113,7 +113,7 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					mainAppContext.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+					mainAppContext.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)); 
 				}
 			})
 			.setNegativeButton("Cancel", new OnClickListener() {
