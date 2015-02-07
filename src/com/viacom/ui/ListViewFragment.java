@@ -3,6 +3,7 @@ package com.viacom.ui;
 import com.example.myvine.R;
 import com.viacom.datahandler.CustomListViewAdapter;
 import com.viacom.datahandler.ProcessedVineDataValues;
+import com.viacom.webservice.FragmentCommunicator;
 
 import android.app.Activity;
 import android.os.Bundle;

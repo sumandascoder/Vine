@@ -2,7 +2,7 @@ package com.viacom.ui;
 
 import com.example.myvine.R;
 import com.viacom.datahandler.ProcessedVineDataValues;
-import com.viacom.webservice.VineMyJSONFormatter;
+import com.viacom.datahandler.VineMyJSONFormatter;
 
 import android.net.Uri;
 import android.os.Bundle;

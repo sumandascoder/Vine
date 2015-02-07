@@ -1,4 +1,4 @@
-package com.viacom.webservice;
+package com.viacom.datahandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,7 +95,7 @@ public class VineMyJSONFormatter {
 	}
 	
 	/**
-	 * Download the URL for display purpose
+	 * Download the Image URL for display purpose
 	 * @param src : The link
 	 * @return : The bitmap Image
 	 */

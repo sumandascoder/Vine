@@ -1,4 +1,4 @@
-package com.viacom.ui;
+package com.viacom.webservice;
 
 /**
  * Communicator for the Fragments

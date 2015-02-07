@@ -1,9 +1,9 @@
-package com.viacom.webservice;
+package com.viacom.datahandler;
 
 import java.util.List;
 
 /**
- * 
+ * Gson based Model : Unused
  * @author sumansucharitdas
  *
  */

@@ -1,19 +1,19 @@
 package com.viacom.ui;
 
 import com.example.myvine.R;
+import com.viacom.webservice.FragmentCommunicator;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle; 
 import android.support.v4.app.FragmentActivity;
 import android.view.ContextThemeWrapper;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 /**
- * Container to hold the Fragments, ListView and DetailView
- * it adds the communicator that makes the fragment interactive
+ * Container to hold the Fragments, ListView and DetailView.
+ * It adds the communicator that makes the fragment interactive
  * to each other
  * @author sumansucharitdas
  *

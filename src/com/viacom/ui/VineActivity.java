@@ -60,13 +60,14 @@ public class VineActivity extends Activity {
 		animation.setFillAfter(true);
 		viacomImage.startAnimation(animation);
 
-		// View Page animator for the Mtv logo 
+		// View Page animator for the Mtv logo : vibrates the logo and shows a welcome toast
 		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
 		final ImageView mtvLogo = (ImageView)findViewById(R.id.ViacomImageMtv);
 		mtvLogo.setImageResource(R.drawable.ic_mtv);
 		mtvLogo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Welcome to Viacom", Toast.LENGTH_LONG).show();
 				mtvLogo.startAnimation(shake);
 			}
 		});
@@ -88,7 +89,7 @@ public class VineActivity extends Activity {
         
         
         /**
-         * User seeks to fetch Data for a particular user Profile
+         * User seeks to fetch the data for a particular user Profile
          */
         Button viacomResults = (Button) findViewById(R.id.ViacomResults);
 		viacomResults.setOnClickListener(new OnClickListener() {
@@ -116,7 +117,7 @@ public class VineActivity extends Activity {
 		        progressDialog.setCanceledOnTouchOutside(false);
 		        progressDialog.show();
 		        
-		        // Call to the Async Task Execution
+		        // Call to the Async Task Execution for Downloading the Videos
 				new DownloadTimelines(vineContext, urlUserString.toString()).execute(new JSONObject());
 			}
 		});
