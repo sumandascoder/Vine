@@ -15,9 +15,9 @@
 #####Applied Three- Pronged Approach:
 1. **As a Designer and Product Owner:**  
 The UI needs to be lucid and user friendly leading to nice User Experience. Following are the guidelines taken into consideration:  
- 	-Simple Workflow model that let the user navigate quite scholastically across screens 
-	-Simplicity is the key, the naming of widgets are to be intuitive
- 	-Small Animations to keep user engaged 
+ 	-Simple Workflow model that let the user navigate quite scholastically across screens  
+	-Simplicity is the key, the naming of widgets are to be intuitive  
+ 	-Small Animations to keep user engaged  
 
 2. **As a Developer and Architect:**  
 Basic functionality is based on the MVC design pattern, where we have to have a call to Vine API, obtain and process the result and display it on the UI.  I have three main sub folders in source directory, one is the Model(the datahandler section), View(the UI section) and the Controller (the webservices section).  
