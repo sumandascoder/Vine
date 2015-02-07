@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.example.myvine.R;
-import com.viacom.webservice.VineMyJSONFormatter;
+import com.viacom.ui.ViewHolder;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -80,7 +80,7 @@ public class CustomListViewAdapter extends BaseAdapter {
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-        // Add the text to be diplayed along the Thumbnails
+        // Add the text to be displayed along with the Thumbnails
         holder.tv.setText(ProcessedVineDataValues.usernames.get(position));
         holder.img.setImageBitmap(VineMyJSONFormatter.thumbnails.get(position)); 
    

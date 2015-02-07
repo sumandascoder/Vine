@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.example.myvine.R;
 import com.viacom.datahandler.ProcessedVineDataValues;
+import com.viacom.datahandler.VineMyJSONFormatter;
 import com.viacom.ui.ListViewerActivity;
 import com.viacom.ui.VineActivity;
 
@@ -118,12 +119,13 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 	
 	@Override
 	protected void onPostExecute(ProcessedVineDataValues result) {
-		// Closing the Progree Dialog
+		// Closing the Progress Dialog
 		if(VineActivity.progressDialog.isShowing()){
 			VineActivity.progressDialog.dismiss();
 		}
-		// If response is accurate and no errors in the json
+		// If response is accurate and no errors in the json response from server
 		if(responseCode == 200 && "".equals(vine.getError())){
+			// Launch the List View Activity 
 			Intent myIntent = new Intent(mainAppContext, ListViewerActivity.class);
 			myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			mainAppContext.startActivity(myIntent);
@@ -153,6 +155,7 @@ public class DownloadTimelines extends AsyncTask<JSONObject, Void, ProcessedVine
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					// Launch the Settings Window for Wifi connections
 					mainAppContext.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)); 
 				}
 			})

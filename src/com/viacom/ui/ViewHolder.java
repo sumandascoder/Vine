@@ -1,4 +1,4 @@
-package com.viacom.datahandler;
+package com.viacom.ui;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +9,6 @@ import android.widget.TextView;
  */
 public class ViewHolder
 {
-    TextView tv;
-    ImageView img;
+    public TextView tv;
+    public ImageView img;
 }
